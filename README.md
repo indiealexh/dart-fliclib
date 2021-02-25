@@ -48,3 +48,8 @@ void run() async {
 Please file feature requests and bugs at the [issue tracker][tracker].
 
 [tracker]: https://github.com/indiealexh/dart-fliclib/issues
+
+
+## License
+
+Dart Fliclib by Alexander Haslam is licensed under CC BY 4.0 
