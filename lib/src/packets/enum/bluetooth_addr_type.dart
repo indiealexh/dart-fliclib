@@ -1,0 +1,1 @@
+enum BdAddrType { PublicBdAddrType, RandomBdAddrType }
