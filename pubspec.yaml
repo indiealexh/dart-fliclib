@@ -1,6 +1,6 @@
 name: fliclib
-description: A starting point for Dart libraries or applications.
-version: 1.0.0-dev.1
+description: A library to use Flic 2 bluetooth Smart Button with dart and flutter. Built to use the Flic 2 TCP Protocol Specification.
+version: 1.0.0-dev.2
 homepage: https://github.com/indiealexh/dart-fliclib
 
 environment:

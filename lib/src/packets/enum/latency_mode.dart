@@ -1,5 +1,1 @@
-enum LatencyMode {
-  NormalLatency,
-  LowLatency,
-  HighLatency
-}
+enum LatencyMode { NormalLatency, LowLatency, HighLatency }

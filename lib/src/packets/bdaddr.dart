@@ -1,8 +1,10 @@
 import 'dart:typed_data';
 
+/// Object representing a MacAddress in Byte form
 class Bdaddr {
   Uint8List bytes = Uint8List(6);
 
+  /// Parse a Mac Address String into a [Bdaddr]
   Bdaddr(String addr) {
     var parts = addr.split(':');
     bytes[0] = int.parse(parts[0], radix: 16);
@@ -13,6 +15,7 @@ class Bdaddr {
     bytes[5] = int.parse(parts[5], radix: 16);
   }
 
+  /// Create a [Bdaddr] from a List of Bytes
   Bdaddr.fromBytes(Uint8List bytes) {
     this.bytes = bytes;
   }

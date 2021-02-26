@@ -33,6 +33,7 @@ abstract class CommandPacket {
   }
 }
 
+/// Construct a TCP packet to request "GetInfo" from the FlicSDK server
 class CmdGetInfo extends CommandPacket {
   CmdGetInfo() : super(0);
 }
@@ -51,6 +52,7 @@ class CmdGetInfo extends CommandPacket {
 //   }
 // }
 
+/// Construct a TCP packet to request "GetInfo" from the FlicSDK server
 class CmdCreateConnectionChannel extends CommandPacket {
   final ButtonConnectionChannel buttonConnectionChannel;
 

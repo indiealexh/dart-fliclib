@@ -17,6 +17,7 @@ class FlicClient {
 
   FlicClient();
 
+  /// Connects to the FlicSDK Server by Creating a Socket
   void connect() async {
     print('connecting to flicsdk');
     _socket = await Socket.connect('127.0.0.1', 5551);
@@ -28,6 +29,7 @@ class FlicClient {
     );
   }
 
+  /// Listens for and directs TCP packets from the FlicSDK server
   Future<void> handleEvent(Uint8List packet) async {
     print('TCP Receive: ${EventPacketType.values[packet[2]].toString()}');
     var payload = packet.sublist(3);
@@ -81,6 +83,7 @@ class FlicClient {
     }
   }
 
+  /// Disconnects from the FlicSDK Server by destroying the [_socket]
   void disconnect(dynamic message) {
     print(message);
     if (isSocketOpen) {
@@ -91,6 +94,7 @@ class FlicClient {
     }
   }
 
+  /// Sends the [commandPacket] via the active [_socket] to the connected FlicSDK Server
   void writeToSocket(CommandPacket commandPacket) async {
     if (isSocketOpen) {
       var packet = Uint8List(2 + commandPacket.builder.length);

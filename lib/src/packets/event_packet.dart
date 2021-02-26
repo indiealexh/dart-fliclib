@@ -5,6 +5,7 @@ import 'package:fliclib/src/packets/enum/bluetooth_addr_type.dart';
 import 'package:fliclib/src/packets/enum/bluetooth_controller_state.dart';
 import 'package:fliclib/src/packets/enum/click_type.dart';
 
+/// Base class for Parsing Events TCP Packets
 abstract class EventPacket {
   final Uint8List pkt;
   int pos = 0;
@@ -15,14 +16,17 @@ abstract class EventPacket {
 
   void parse(Uint8List bytes);
 
+  /// Get the next Byte
   int _getUInt8() {
     return pkt[pos++];
   }
 
+  /// Get the next Two Bytes as a single value
   int _getUint16() {
     return _getUInt8() | (_getUInt8() << 8);
   }
 
+  /// Get the next 4 Bytes as a single value
   int _getInt32() {
     return _getUInt8() |
         (_getUInt8() << 8) |
@@ -30,17 +34,20 @@ abstract class EventPacket {
         (_getUInt8() << 24);
   }
 
+  /// Get the next byte as a boolean
   bool _getBool() {
     return _getUInt8() != 0;
   }
 
-  String _getString() {
-    var len = _getUInt8();
-    var s = String.fromCharCodes(Uint8List.sublistView(pkt, pos, len));
-    pos += 16;
-    return s;
-  }
+  // TODO: Add back in when need to obtain a String from a packet
+  // String _getString() {
+  //   var len = _getUInt8();
+  //   var s = String.fromCharCodes(Uint8List.sublistView(pkt, pos, len));
+  //   pos += 16;
+  //   return s;
+  // }
 
+  /// Get the next 6 bytes as a Mac Address
   Bdaddr _getBdAddr() {
     // Address is a fix length of 6 bytes represented as hex and should be printed separated by colons
     var addrBytes = Uint8List(6);
@@ -54,6 +61,7 @@ abstract class EventPacket {
   }
 }
 
+/// Parse the GetInfo reply packet
 class GetInfoEvent extends EventPacket {
   BluetoothControllerState bluetoothControllerState;
   Bdaddr bdAddr;
@@ -89,6 +97,7 @@ class GetInfoEvent extends EventPacket {
   }
 }
 
+/// Parse the Button event Packets
 class ButtonEvent extends EventPacket {
   int connId;
   ClickType clickType;
